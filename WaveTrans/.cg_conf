@@ -1,0 +1,1 @@
+{"id":"fortran","ext":"f95","version":"GNU Fortran, GCC v5.3.1","compile":"gfortran -std=f95 *.f95 -o main","execute":"main","preview":"","command":"","file":"/home/cg/src/samples/main.f95","url":"compile_fortran_online.php","mode":"sql"}
