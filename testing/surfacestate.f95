@@ -1,8 +1,8 @@
 program surfacestate
 implicit none
 !---------------------------------------------------------------------------
-! Read PROCAR file, and extract the contribution from each atom
-! Identify the surface state of slab
+! Identify the surface states a slab 
+!  Input file is the PROCAR from VASP
 !---------------------------------------------------------------------------
 
 INTEGER :: nkpoints, nbands, natoms
@@ -42,6 +42,11 @@ allocate (wt(nkpoints))
 allocate (eig_ev(nkpoints, nbands), occ(nkpoints, nbands), oc(nkpoints,nbands,natoms,10))
 
 
+!------------------------------------
+!  read PROCAR
+!------------------------------------
+
+
         do k = 1,nkpoints
           read(7,*)
           read(7,105) kp,pt1,pt2,pt3,wt(k)
@@ -74,9 +79,16 @@ allocate (eig_ev(nkpoints, nbands), occ(nkpoints, nbands), oc(nkpoints,nbands,na
     
     
     
+!------------------------------------
+!  write band structure.dat
+!  # kpoint; eig_ev; surface state?
+!------------------------------------    
     
-    
-    
+    do nb = 1,nbands
+        do k = 1, nkpoints
+          if ((oc(k,nb,1,10) + oc(k,nb,2,10)) / (oc(k,nb,natoms,10))) > 0.8 &
+        enddo
+    enddo
 
 
 
